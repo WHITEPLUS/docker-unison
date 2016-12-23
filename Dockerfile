@@ -1,11 +1,11 @@
 FROM alpine:edge
-MAINTAINER Onni Hakala <onni.hakala@geniem.com>
+MAINTAINER Kai Suzuki <kai.zoa1@gmail.com>
 
 ARG UNISON_VERSION=2.48.4
 
 # Install in one run so that build tools won't remain in any docker layers
 # Install build tools
-RUN apk add --update build-base curl bash && \
+RUN apk add --update build-base curl bash inotify-tools && \
     # Install ocaml & emacs from testing repositories
     apk add --update-cache --repository http://dl-4.alpinelinux.org/alpine/edge/testing/ ocaml emacs && \
     # Download & Install Unison
@@ -21,8 +21,8 @@ RUN apk add --update build-base curl bash && \
     rm -rf /tmp/unison-${UNISON_VERSION}
 
 # These can be overridden later
-ENV TZ="Europe/Helsinki" \
-    LANG="C.UTF-8" \
+ENV TZ="Asia/Tokyo" \
+    LANG="ja_JP.UTF-8" \
     UNISON_DIR="/data" \
     HOME="/tmp" \
 
